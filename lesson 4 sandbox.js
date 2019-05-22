@@ -42,6 +42,33 @@ const bill = (products, tax) => {
 
 console.log(bill([10, 15, 30], 0.2))
 
-//  callbacks & foreach
 
+//  Callbacks & foreach  
 
+const myFunc = (callbackFunc) => {
+    let value = 50;
+    callbackFunc(value)
+}
+
+myFunc(value => {
+    //do something
+    console.log(value);
+});
+ 
+
+let peoples = ['mario', 'luigi', 'ryu', 'shaunn', 'chun-li'];
+peoples.forEach((person, index) => console.log(person, index));
+
+//get a reference to the 'ul'
+const ul = document.querySelector('.people');
+const people = ['mario', 'luigi', 'ryu', 'shaun', 'chun-li'];
+
+let html = ``;
+
+people.forEach(person => {
+  // create html template for each person
+  html += `<li style="color: purple">${person}</li>`;
+});
+
+console.log(html);
+ul.innerHTML = html;
