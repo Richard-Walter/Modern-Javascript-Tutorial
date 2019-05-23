@@ -55,7 +55,6 @@ user.logout()
 user.logBlogs()
 console.log(this)       //prints window base object
 
-
 //Math object
 console.log(Math)
 console.log(Math.PI)
