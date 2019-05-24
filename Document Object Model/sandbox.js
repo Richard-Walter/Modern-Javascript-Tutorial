@@ -73,21 +73,39 @@
 
 //changing class to change the style
 
-const content = document.querySelector('p');
-console.log(content)
+// const content = document.querySelector('p');
+// console.log(content)
 
-// content.classList.remove('error')   
-content.classList.add('success')    //add the success style sheet
+// // content.classList.remove('error')   
+// content.classList.add('success')    //add the success style sheet
 
-const paras = document.querySelectorAll('p')
+// const paras = document.querySelectorAll('p')
 
-paras.forEach(p => {
+// paras.forEach(p => {
    
-  if(p.innerText.includes('error')){    //gets all the text that is visible
-    p.classList.add('error');
-  } else if(p.textContent.includes('success')) { //gets all the text hidden included
-    p.classList.add('success');
-  }
-});
+//   if(p.innerText.includes('error')){    //gets all the text that is visible
+//     p.classList.add('error');
+//   } else if(p.textContent.includes('success')) { //gets all the text hidden included
+//     p.classList.add('success');
+//   }
+// });
 
+//Parents, children and siblings
+const article = document.querySelector('article')
+
+console.log(article.children) // returns 
+
+//HTMLCOllection (can't use foreach on this - must convert to array
+Array.from(article.children)  //returns new array
+
+// Array.from(article.children).forEach(child => {
+//   child.classList.add('article-element');
+// })
+
+const title = document.querySelector('h2')
+
+console.log(title.parentElement); //returns parent element
+console.log(title.parentElement.parentElement);  //gets parent of the parent
+console.log(title.nextElementSibling); //returns element next to it 
+console.log(title.previousElementSibling); //returns element next to it 
 
