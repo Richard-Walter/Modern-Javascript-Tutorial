@@ -1,5 +1,8 @@
-const correctAnswers = ['B', 'B', 'B','B'];
+const correctAnswers = ['B', 'B', 'B', 'B'];
 const form = document.querySelector('.quiz-form');
+const result = document.querySelector('.result')
+const result_text = document.querySelector('.text-primary')
+
 
 form.addEventListener('submit', e => {
     e.preventDefault(); //prevent page refresh
@@ -9,11 +12,29 @@ form.addEventListener('submit', e => {
 
     //check answers
     userAnswers.forEach((answer, index) => {
-        if (answer === correctAnswers[index]){
+        if (answer === correctAnswers[index]) {
             score += 25;
-            
+
         }
     });
 
-    console.log(score);
+    //scroll to the top
+    scrollTo(0, 0)
+
+    result.classList.remove('d-none')
+
+    let output = 0;
+    const scoreboard = result.querySelector('span')
+    const timer = setInterval(() => {
+        //do another query selector on the first query selector
+        scoreboard.textContent = `${output}%`
+
+        if (output === score) {
+            clearInterval(timer)
+        } else{
+            output ++;
+        }
+    }, 10);
+
 });
+

@@ -1,17 +1,27 @@
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Ninja Quiz</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
+
 <body>
 
   <!-- top section -->
   <div class="intro py-3 bg-white text-center">
     <div class="container">
       <h2 class="text-primary display-3 my-4">Ninja Quiz</h2>
+    </div>
+  </div>
+  
+  <!--Result Section-->
+  <div class="result py-4  d-none bg-light text -center">
+    <div class ="container lead">
+      <p>You are <span class="text-primary display-4 p-3">0%</span> ninja</p>
     </div>
   </div>
 
@@ -21,7 +31,8 @@
       <h2 class="my-5 text-white">On with the questions...</h2>
 
       <form class="quiz-form text-light">
-        <div class="my-5">  <!-- syling from bootstrap margin in this case -->
+        <div class="my-5">
+          <!-- syling from bootstrap margin in this case -->
           <p class="lead font-weight-normal">1. How do you give a ninja directions?</p>
           <div class="form-check my-2 text-white-50">
             <input type="radio" name="q1" value="A" checked>
@@ -32,8 +43,9 @@
             <label class="form-check-label">Don't worry, the ninja will find you</label>
           </div>
         </div>
-        <div class="my-5">  
-          <p class="lead font-weight-normal">2. If a ninja has 3 apples, then gives one to Mario & one to Yoshi, how many apples does the ninja have left?</p>
+        <div class="my-5">
+          <p class="lead font-weight-normal">2. If a ninja has 3 apples, then gives one to Mario & one to Yoshi, how
+            many apples does the ninja have left?</p>
           <div class="form-check my-2 text-white-50">
             <input type="radio" name="q2" value="A" checked>
             <label class="form-check-label">1 apple</label>
@@ -66,13 +78,14 @@
           </div>
         </div>
         <div class="text-center">
-          <input type="submit" class="btn btn-light"> 
+          <input type="submit" class="btn btn-light">
         </div>
       </form>
 
     </div>
   </div>
-  
+
   <script src="app.js"></script>
 </body>
+
 </html>
