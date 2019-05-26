@@ -1,13 +1,14 @@
 const form = document.querySelector('.signup-form')
 const feedback = document.querySelector('.feedback')
+const usernamePattern = /^[a-zA-Z]{6,12}$/;
 // const username = document.querySelector('#username')
 
 form.addEventListener('submit', e => {
     e.preventDefault()    //prevents refresh of page
-    console.log(form.username.value);   //can access form values using . notation
+    // console.log(form.username.value);   //can access form values using . notation
     const username = form.username.value;
-    const usernamePattern = /^[a-zA-Z]{6,12}$/;
-    console.log(usernamePattern.test(username))
+    
+    // consolte.log(usernamePattern.test(username))
 
     if (usernamePattern.test(username)){
         feedback.textContent = 'that username is valid'
@@ -33,3 +34,13 @@ form.addEventListener('submit', e => {
 // } else {
 //     console.log('regex test failed');
 // }
+
+form.username.addEventListener('keyup', e => {
+    console.log(e.target.value, form.username.value)  //best to use e.target in case change form name
+    if(usernamePattern.test(e.target.value)){
+        form.username.setAttribute('class', 'success')
+        
+    } else {
+        form.username.setAttribute('class', 'error')
+    }
+})
