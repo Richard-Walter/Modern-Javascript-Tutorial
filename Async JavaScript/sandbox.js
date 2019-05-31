@@ -90,17 +90,43 @@
 //better way than using the XMLHttpRequest method - implements Promise under the hood too
 
 //fetch() returns a promise so we can tack on a then()
-fetch('luigi.json').then((response) =>{
-    console.log('Resolved', response)
-    return response.json();    //gets us the response data as a another Promise
+// fetch('luigi.json').then((response) =>{
+//     console.log('Resolved', response)
+//     return response.json();    //gets us the response data as a another Promise
     
-}).then(data =>{
-    console.log(data)
+// }).then(data =>{
+//     console.log(data)
 
-//in the fetch api err is only called if there is a network error    
-}).catch((err) => {
-    console.log('Rejected', err)
-}); 
+// //in the fetch api err is only called if there is a network error    
+// }).catch((err) => {
+//     console.log('Rejected', err)
+// }); 
 
+/*                   ASYNC and AWAIT                  */
+//allow us to chain promises together in a cleaner more readble way.
 
+//using async keyword always means it returns a promise
+const getTodos = async() => {
 
+    //await keyword stalls JavaScript until the promise has resolved, then we get response
+    const response = await fetch('luigis.json')
+
+    if (response.status !==200) {
+        throw new Error('Cannot fetch the JSON data')
+    }
+
+    //json method is asyncronous itself, so use the await keyword
+    const data = await response.json();
+    return data;    //returned to the then() function in the promise
+}
+
+console.log(1)
+console.log(2)
+
+//non blocking-returns a promise
+getTodos()
+    .then(data => console.log('resolved:', data))
+    .catch(err => console.log('rejected', err.message))
+
+console.log(3)
+console.log(4)
