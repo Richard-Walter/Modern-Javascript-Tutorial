@@ -33,12 +33,16 @@ const getTodos = (resource) => {
 }
 
 getTodos('luigi.json').then(data => {
-    console.log('promise resolve', data)
+    console.log('promise 1 resolve', data)
+    return getTodos('mario.json')
+}).then(data => {
+    console.log('promise 2 resolve', data)
+    return getTodos('shaunn.json')
+}).then(data => {
+    console.log('promise 3 resolve', data)
 }).catch(err => {
     console.log("promise rejected", err)
 })
-
-
 
 
 // //callback hell!!!
@@ -81,3 +85,11 @@ getTodos('luigi.json').then(data => {
 // }).catch(err => {
 //     console.log(err)
 // })
+
+/*               FETCH API               */
+//better way than using the XMLHttpRequest method - implements Promise under the hood too
+
+
+
+
+
