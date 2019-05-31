@@ -9,40 +9,40 @@
 // console.log(4)
 
 /*       HTTP Requests       */
-const getTodos = (resource) => {
+// const getTodos = (resource) => {
 
-    return new Promise((resolve, reject) => {
-        const request = new XMLHttpRequest();
+//     return new Promise((resolve, reject) => {
+//         const request = new XMLHttpRequest();
 
-        //request  goes through 4 state changes  opened, headers, received, loading, done
-        request.addEventListener('readystatechange', () => {
-            // console.log(request, request.readyState);
-            if (request.readyState === 4 && request.status === 200) { //Request done and No Error
-                const data = JSON.parse(request.responseText)   //convert JSON to an JS array
-                resolve(data)
-            } else if (request.readyState === 4) {
-                reject("error getting resource");
-            }
-        })
+//         //request  goes through 4 state changes  opened, headers, received, loading, done
+//         request.addEventListener('readystatechange', () => {
+//             // console.log(request, request.readyState);
+//             if (request.readyState === 4 && request.status === 200) { //Request done and No Error
+//                 const data = JSON.parse(request.responseText)   //convert JSON to an JS array
+//                 resolve(data)
+//             } else if (request.readyState === 4) {
+//                 reject("error getting resource");
+//             }
+//         })
 
-        // request.open('GET', 'https://jsonplaceholder.typicode.com/todos/');
-        request.open('GET', resource);
-        request.send()
-    });
-    ;
-}
+//         // request.open('GET', 'https://jsonplaceholder.typicode.com/todos/');
+//         request.open('GET', resource);
+//         request.send()
+//     });
+//     ;
+// }
 
-getTodos('luigi.json').then(data => {
-    console.log('promise 1 resolve', data)
-    return getTodos('mario.json')
-}).then(data => {
-    console.log('promise 2 resolve', data)
-    return getTodos('shaunn.json')
-}).then(data => {
-    console.log('promise 3 resolve', data)
-}).catch(err => {
-    console.log("promise rejected", err)
-})
+// getTodos('luigi.json').then(data => {
+//     console.log('promise 1 resolve', data)
+//     return getTodos('mario.json')
+// }).then(data => {
+//     console.log('promise 2 resolve', data)
+//     return getTodos('shaun.json')
+// }).then(data => {
+//     console.log('promise 3 resolve', data)
+// }).catch(err => {
+//     console.log("promise rejected", err)
+// })
 
 
 // //callback hell!!!
@@ -86,10 +86,21 @@ getTodos('luigi.json').then(data => {
 //     console.log(err)
 // })
 
-/*               FETCH API               */
+/*               FETCH API - built into the languae               */
 //better way than using the XMLHttpRequest method - implements Promise under the hood too
 
+//fetch() returns a promise so we can tack on a then()
+fetch('luigi.json').then((response) =>{
+    console.log('Resolved', response)
+    return response.json();    //gets us the response data as a another Promise
+    
+}).then(data =>{
+    console.log(data)
 
+//in the fetch api err is only called if there is a network error    
+}).catch((err) => {
+    console.log('Rejected', err)
+}); 
 
 
 
