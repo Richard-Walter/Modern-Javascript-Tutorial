@@ -9,7 +9,7 @@
 // console.log(4)
 
 /*       HTTP Requests       */
-const getTodos = (callback) => {
+const getTodos = (resource, callback) => {
     
     const request = new XMLHttpRequest();
 
@@ -17,20 +17,22 @@ const getTodos = (callback) => {
     request.addEventListener('readystatechange', () => {
             // console.log(request, request.readyState);
             if (request.readyState === 4 && request.status === 200) { //Request done and No Error
-                callback(undefined, request.responseText);
+                const data = JSON.parse(request.responseText)   //convert JSON to an JS array
+                callback(undefined, data);
             } else if  (request.readyState === 4) {
                 callback("could not find data", undefined);
             }
     })
 
-    request.open('GET', 'https://jsonplaceholder.typicode.com/todos/');
+    // request.open('GET', 'https://jsonplaceholder.typicode.com/todos/');
+    request.open('GET', resource);
     request.send()
 }
 
 console.log(1)
 console.log(2)
 
-getTodos((err, data) => {
+getTodos('luigi.json', (err, data) => {
     console.log('Callback Fired')
     if (err){
         console.log(err)
