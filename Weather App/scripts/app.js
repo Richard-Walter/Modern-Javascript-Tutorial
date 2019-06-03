@@ -12,7 +12,7 @@ const updateUI = (data) => {
     //destructure properties of above
     const{cityDets, weather} = data
 
-    //update details template
+    console.log(details)
     details.innerHTML = `
         <h5 class="my-3">${cityDets.EnglishName}</h5>
         <div class="my-3">${weather.WeatherText}</div>
@@ -20,7 +20,6 @@ const updateUI = (data) => {
             <span>${weather.Temperature.Metric.Value}</span>
             <span>&deg;C</span>
         </div>`
-
 
     //update night and day images
     const iconSrc = `img/icons/${weather.WeatherIcon}.svg`
