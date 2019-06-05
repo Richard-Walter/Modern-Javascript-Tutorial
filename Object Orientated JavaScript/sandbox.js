@@ -3,6 +3,16 @@
 /* eslint-disable space-before-function-paren */
 /* eslint-disable indent */
 
+// old way of creating classes
+
+// function User(username, email){
+//     this.username = username;
+//     this.email = email;
+//     this.login = function(){
+//       console.log(`${this.username} has logged in`);
+//     };
+//   }
+
 // classes
 class User {
     // constructor
