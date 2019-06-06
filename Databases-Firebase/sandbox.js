@@ -1,0 +1,1 @@
+// firebase free for small applications and users
