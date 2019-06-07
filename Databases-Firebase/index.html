@@ -16,8 +16,7 @@
   <div class="container my-5">
     <h2>Recipes</h2>
     <ul>
-      <li>Mushroom pie</li>
-      <li>Veg curry</li>
+        <!-- inject recipes dynamically here-->
     </ul>
     <form>
       <label for="recipe">Add a new recipe:</label>
@@ -28,6 +27,7 @@
         </div>
       </div>
     </form>
+    <button class="btn btn-block my-3">unsubscribe from changes</button>
   </div>
 
 <!-- The core Firebase JS SDK is always required and must be listed first -->
@@ -50,7 +50,8 @@
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
-  const db = firebase.firesore();
+  //database reference used in sandbox.js
+  const db = firebase.firestore();
 </script>
 <script src="sandbox.js"></script>
 </body>
