@@ -56,7 +56,6 @@ const unsub = db.collection('recipes').onSnapshot(snapshot => {
 })
 
 
-
 // add documents
 form.addEventListener('submit', e => {
   e.preventDefault();
