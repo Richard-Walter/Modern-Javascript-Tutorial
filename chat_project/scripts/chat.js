@@ -26,6 +26,7 @@ class Chatroom {
         const response = await this.chats.add(chat)
         return response //return a promise as await keyword used
     }
+
     //set up a realtime listener that will return a response when there has been a change
     getChats(callback){
         this.unsub = this.chats //onSnapshot listener returns an unsub object
@@ -40,9 +41,12 @@ class Chatroom {
                 })
         })
     }
+
     updateName(username){
         this.username = username;
+        localStorage.setItem('username', username)
     }
+
     updateRoom(room){
         this.room = room
         if (this.unsub) {
@@ -50,7 +54,7 @@ class Chatroom {
         }
         //get new chat window based on new room
         chatroom.getChats((data) => {
-            console.log(data);
+            chatUI.render(data)
         })
 
     }
