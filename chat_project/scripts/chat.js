@@ -8,6 +8,7 @@ class Chatroom {
         this.room = room;
         this.username = username
         this.chats = db.collection('chats')
+        this.unsub //used to usubscribe from the firestore listener
 
     }
 
@@ -27,7 +28,7 @@ class Chatroom {
     }
     //set up a realtime listener that will return a response when there has been a change
     getChats(callback){
-        this.chats
+        this.unsub = this.chats //onSnapshot listener returns an unsub object
             .where('room', '==', this.room) //takes 3 arguments like SQL
             .orderBy('created_at')  //output them in datae order
             .onSnapshot(snaphot => {
@@ -39,11 +40,18 @@ class Chatroom {
                 })
         })
     }
+    updateName(username){
+        this.username = username;
+    }
+    updateRoom(room){
+        this.room = room
+        if (this.unsub) {
+            this.unsub();   //unsubscripe to document changes for current room
+        }
+        //get new chat window based on new room
+        chatroom.getChats((data) => {
+            console.log(data);
+        })
 
+    }
 }
-
-const chatroom = new Chatroom('general', 'shaun')
-
-chatroom.getChats((data) => {
-    console.log(data);
-})
