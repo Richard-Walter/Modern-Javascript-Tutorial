@@ -1,13 +1,24 @@
-    
-// setup materialize components when content has been loaded on the page
-document.addEventListener('DOMContentLoaded', function() {
+//signup
+const signupForm = document.querySelector('#signup-form')
 
-    // grab all the Materilaize modals and initalize them
-    var modals = document.querySelectorAll('.modal');
-    M.Modal.init(modals);
+// event listener is submit rather than on button as it listens to return as well
+signupForm.addEventListener('submit', e => {
+  e.preventDefault();
+
+  const email = signupForm['signup-email'].value
+  const password = signupForm['signup-password'].value
+
+  // sign up the user using firebase auth object we created in the HTML
+  //this is asyncronous and returns a promise containing a user credential
+  auth.createUserWithEmailAndPassword(email, password).then(cred => {
+    console.log(cred);
+    const modal = document.querySelector('#modal-signup')
+    //close the signup modal
+    M.Modal.getInstance(modal).close()
+    signupForm.reset()
     
-    // grab all the Materilaize modals and initalize them
-    var items = document.querySelectorAll('.collapsible');
-    M.Collapsible.init(items);
-  
-  });
+  })
+
+
+})
+
