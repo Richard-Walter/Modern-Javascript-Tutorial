@@ -1,17 +1,18 @@
 // listen to auth status changes.  
 auth.onAuthStateChanged((user) => {
   if (user) { //if not logged in the user object is null
-    console.log('user logged in : ', user); 
-  } else {
-    console.log('User has logged out');
-  }
- })
 
-//get guide data firestore 
-db.collection('guides').get().then((snapshot) => {
-  setUpGuides(snapshot.docs)
+    //get guide data from firestore 
+    db.collection('guides').get().then((snapshot) => {
+      setUpGuides(snapshot.docs)
+      setupUI(user)
   
 })
+  } else {
+    setUpGuides([])
+    setupUI()
+  }
+ })
 
 //signup
 const signupForm = document.querySelector('#signup-form')
