@@ -7,8 +7,11 @@ auth.onAuthStateChanged((user) => {
   }
  })
 
-
-
+//get guide data firestore 
+db.collection('guides').get().then((snapshot) => {
+  setUpGuides(snapshot.docs)
+  
+})
 
 //signup
 const signupForm = document.querySelector('#signup-form')
