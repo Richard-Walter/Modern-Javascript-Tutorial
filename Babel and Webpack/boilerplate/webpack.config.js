@@ -1,4 +1,3 @@
-
 const path = require('path');
 
 module.exports = {
@@ -12,8 +11,8 @@ module.exports = {
     publicPath: '/assets/'
   },
   module: {
-    rules: [{ // only want to run the babel loader certain js files
-      test: /\.js$/,  //reg expression $ means at the end and \. means literall .
+    rules: [{
+      test: /\.js$/,
       exclude: /node_modules/,
       use: {
         loader: 'babel-loader',
