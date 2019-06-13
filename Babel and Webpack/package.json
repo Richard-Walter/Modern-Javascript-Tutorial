@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "babel": "node_modules/.bin/babel src/index.js -w -o dist/assets/after.js",
-    "webpack": "node_modules/.bin/webpack"
+    "webpack": "node_modules/.bin/webpack -w"
   },
   "author": "",
   "license": "ISC",
