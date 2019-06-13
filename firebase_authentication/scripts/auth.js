@@ -1,18 +1,20 @@
 // listen to auth status changes.  
 auth.onAuthStateChanged((user) => {
+  console.log(user);
+
   if (user) { //if not logged in the user object is null
 
-    //get guide data from firestore 
-    db.collection('guides').get().then((snapshot) => {
+    //get guide data from firestore. Snapshot is also a listener
+    db.collection('guides').onSnapshot((snapshot) => {
       setUpGuides(snapshot.docs)
       setupUI(user)
-  
-})
+
+    });
   } else {
     setUpGuides([])
     setupUI()
   }
- })
+})
 
 //signup
 const signupForm = document.querySelector('#signup-form')
@@ -24,15 +26,24 @@ signupForm.addEventListener('submit', e => {
   const email = signupForm['signup-email'].value
   const password = signupForm['signup-password'].value
 
+
   // sign up the user using firebase auth object we created in the HTML
   //this is asyncronous and returns a promise containing a user credential
   auth.createUserWithEmailAndPassword(email, password).then(cred => {
-    
+
+    //create a new document in users collection (firebase will create if doesn't exist)
+    //then instead of add() we use doc() where we can create out own ID(userID)
+    //it then returns a promise
+    return db.collection('users').doc(cred.user.uid).set({
+      bio: signupForm['signup-bio'].value
+    })
+
+  }).then(() => {
     const modal = document.querySelector('#modal-signup')
+
     //close the signup modal
     M.Modal.getInstance(modal).close()
     signupForm.reset()
-
   })
 })
 
@@ -53,7 +64,7 @@ loginForm.addEventListener('submit', e => {
   const password = loginForm['login-password'].value
 
   auth.signInWithEmailAndPassword(email, password).then((cred) => {
-   
+
     //close the signup modal
     const modal = document.querySelector('#modal-login')
     M.Modal.getInstance(modal).close()
