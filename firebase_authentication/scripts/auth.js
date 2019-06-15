@@ -16,6 +16,16 @@ auth.onAuthStateChanged((user) => {
 
   if (user) { //if not logged in the user object is null
 
+    // get user claims
+    user.getIdTokenResult().then((idTokenResult) => {
+      console.log(idTokenResult.claims);
+      console.log(user);
+
+      //this line seems to create a admin field dynamically??
+      user.admin = idTokenResult.claims.admin
+      setupUI(user)
+    })
+
     //get guide data from firestore. Snapshot is also a listener
     db.collection('guides').onSnapshot((snapshot) => {
       setUpGuides(snapshot.docs)
