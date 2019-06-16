@@ -15,3 +15,28 @@ run the install command again to make sure that you have the latest version.
 4) Test site locally using command line 'firebase serve'
 5) Deploy your website (everything in public folder): 'firebase deploy'
 6) go to version history and change settings to say keep previous 4 versions
+
+NOte:  firebase.json file you can configure redirects.  For example:
+
+{
+  "hosting": {
+    "redirects": [
+      {
+        "source": "/about", 
+        "destination": "/",
+        "type": 301 
+      },
+      {
+        "source": "/contact", 
+        "destination": "/",
+        "type": 302 
+      }
+    ],
+    "public": "public",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
